@@ -1,0 +1,147 @@
+{
+  "name": "html",
+  "patterns": [
+    {
+      "name": "whitespace",
+      "match": "([\\s]+)",
+      "captures": [
+        "whitespace"
+      ]
+    },
+    {
+      "name": "html.doctype",
+      "match": "(<)(!DOCTYPE html)(>)",
+      "captures": [
+        "html.punctuation.start",
+        "html.tag.doctype",
+        "html.punctuation.end"
+      ]
+    },
+    {
+      "name": "html.tag.block",
+      "start": "(<\\/?)(div)",
+      "startCaptures": [
+        "html.punctuation.start",
+        "html.tag.block"
+      ],
+      "end": "(>)",
+      "endCaptures": [
+        "html.punctuation.end"
+      ],
+      "patterns": [
+        {
+          "include": "#tag-stuff"
+        }
+      ]
+    },
+    {
+      "name": "html.tag.other",
+      "start": "(<\\/?)([a-zA-Z0-9:-]+)",
+      "startCaptures": [
+        "html.punctuation.start",
+        "html.tag.other"
+      ],
+      "end": "(>)",
+      "endCaptures": [
+        "html.punctuation.end"
+      ],
+      "patterns": [
+        {
+          "include": "#tag-stuff"
+        }
+      ]
+    },
+    {
+      "name": "text",
+      "match": "([^<]+)",
+      "captures": [
+        "html.text"
+      ]
+    }
+  ],
+  "repository": {
+    "tag-stuff": {
+      "patterns": [
+        {
+          "name": "whitespace",
+          "match": "([\\s]+)",
+          "captures": [
+            "whitespace"
+          ]
+        },
+        {
+          "include": "#tag-generic-attribute"
+        },
+        {
+          "include": "#unquoted-attribute"
+        }
+      ]
+    },
+    "tag-generic-attribute": {
+      "patterns": [
+        {
+          "start": "([^\\s/=>\"'<]+)(=)",
+          "startCaptures": [
+            "entity.other.attribute-name.html",
+            "punctuation.separator.key-value.html"
+          ],
+          "end": "(?!\\G)|(?=\\s|/?>)",
+          "name": "meta.attribute-with-value.html",
+          "patterns": [
+            {
+              "include": "#string-double-quoted"
+            },
+            {
+              "include": "#string-single-quoted"
+            },
+            {
+              "include": "#unquoted-attribute"
+            }
+          ]
+        },
+        {
+          "match": "([^\\s/=>\"'<]+)",
+          "captures": [
+            "entity.other.attribute-name.html"
+          ],
+          "name": "meta.attribute-without-value.html"
+        }
+      ]
+    },
+    "unquoted-attribute": {
+      "patterns": [
+        {
+          "match": "([^\\s&>\"'<=`]|&(?=>))+",
+          "captures": [
+            "html.string.unquoted"
+          ],
+          "name": "html.string.unquoted"
+        }
+      ]
+    },
+    "string-double-quoted": {
+      "patterns": [
+        {
+          "match": "(\")([^\"]+)(\")",
+          "captures": [
+            "html.punctuation.definition.string.begin",
+            "html.string.double",
+            "html.punctuation.definition.string.end"
+          ]
+        }
+      ]
+    },
+    "string-single-quoted": {
+      "patterns": [
+        {
+          "match": "(')([^']+)(')",
+          "captures": [
+            "html.punctuation.definition.string.begin",
+            "html.string.double",
+            "html.punctuation.definition.string.end"
+          ]
+        }
+      ]
+    }
+  }
+}
