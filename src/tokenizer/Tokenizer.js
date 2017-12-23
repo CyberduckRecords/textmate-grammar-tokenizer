@@ -83,17 +83,17 @@ class Tokenizer {
     let subTokens = []
     let prevRest = input
     let rest = input
-    while (rest) {
+    while (rest) { // repeat script for as long as rest is a string
       for (let s in subPatterns) { // loop through subPatterns
         let subPattern = subPatterns[s] // declare subPattern variable
         if (subPattern.include) { // test if subPattern is an include
           let repositoryName = subPattern.include.replace(/#(.+)/, '$1') // get name of referenced repository
           let repositoryTokens = this.TokenizeRepository(repositoryName, rest) // get tokens from repository patterns
           for (let s in repositoryTokens.tokens) subTokens.push(repositoryTokens.tokens[s]) // add repositoryTokens to subTokens
-          rest = repositoryTokens.rest
+          rest = repositoryTokens.rest // set rest variable to the rest from repositoryTokens
         }
       }
-      if (prevRest == rest) return { tokens: subTokens, rest: rest }
+      if (prevRest == rest) return { tokens: subTokens, rest: rest } // return if no patterns match anymore
       prevRest = rest
     }
   }

@@ -30,7 +30,7 @@ class Highlighter {
     for (let l in lines) {
       output += `<div class="line" id="${l*1+1}">`
       if (!(/<span/.test(lines[l]))) {
-        output += `<span class="html text">${lines[l]}</span>`
+        output += `<span class="text">${lines[l]}</span>`
       } else {
         output += lines[l]
       }

@@ -53,8 +53,6 @@ let stylesheet = `
   font-size: 20px;
   font-weight: 500;
   background:var(--very-dark-grey);
-}
-.html {
   color: var(--very-light-grey);
 }
 .html.tag {
