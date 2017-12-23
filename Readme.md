@@ -24,7 +24,8 @@ let code = `<template lang="html">
   <div id="app" class="test">App</div>
 </template>`
 
-let highlighted = highlighter.Highlight(code)```
+let highlighted = highlighter.Highlight(code)
+```
 
 'highlighted' returns:
 ```html
