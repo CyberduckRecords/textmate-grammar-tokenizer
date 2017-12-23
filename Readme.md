@@ -88,3 +88,7 @@ Currently the grammars are in the format of:
   }
 }
 ```
+
+### Todo List:
+`Add Nested Subpatterns`
+`Turn into fully working editor`

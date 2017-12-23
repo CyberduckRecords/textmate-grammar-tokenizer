@@ -35,8 +35,10 @@ class Tokenizer {
 
             if (subPatterns) { // check if pattern has subPatterns
               let subTokens = this.TokenizeSubPatterns(subPatterns, rest) // get tokens from subPatterns
-              for (let s in subTokens.tokens) tokens.push(subTokens.tokens[s]) // add subTokens to tokens
-              rest = subTokens.rest
+              if (subTokens) {
+                for (let s in subTokens.tokens) tokens.push(subTokens.tokens[s]) // add subTokens to tokens
+                rest = subTokens.rest
+              }
             }
 
             let endMatches = rest.match(endRegex) // match end regex
@@ -135,8 +137,10 @@ class Tokenizer {
 
           if (subPatterns) { // check if pattern has subPatterns
             let subTokens = this.TokenizeSubPatterns(subPatterns, rest) // get tokens from subPatterns
-            for (let s in subTokens.tokens) tokens.push(subTokens.tokens[s]) // add subTokens to tokens
-            rest = subTokens.rest
+            if (subTokens) {
+              for (let s in subTokens.tokens) tokens.push(subTokens.tokens[s]) // add subTokens to tokens
+              rest = subTokens.rest
+            }
           }
 
           let endMatches = rest.match(endRegex) // match end regex

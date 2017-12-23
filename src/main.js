@@ -54,6 +54,7 @@ let stylesheet = `
   font-weight: 500;
   background:var(--very-dark-grey);
   color: var(--very-light-grey);
+  white-space: pre;
 }
 .html.tag {
   color: var(--blue);
