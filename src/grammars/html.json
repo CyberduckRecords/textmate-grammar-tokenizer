@@ -24,7 +24,7 @@
         "html.punctuation.start",
         "html.tag.block"
       ],
-      "end": "(>)",
+      "end": "(\/?>)",
       "endCaptures": [
         "html.punctuation.end"
       ],
@@ -41,7 +41,7 @@
         "html.punctuation.start",
         "html.tag.other"
       ],
-      "end": "(>)",
+      "end": "(\/?>)",
       "endCaptures": [
         "html.punctuation.end"
       ],
