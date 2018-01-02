@@ -30,7 +30,7 @@ class Tokenizer {
 
   TokenizeLine (input, line=0, state) {
     let patterns = this.grammar.patterns
-    let rest = input
+    let rest = input, oldRest = input
     let tokens = []
     let runs = 0
 
@@ -129,6 +129,17 @@ class Tokenizer {
 
       }
       runs++
+
+      if (rest == oldRest) {
+        tokens.push({
+          match: rest.substring(0,1),
+          captures: 'invalid'
+        })
+        rest = rest.substring(1)
+      }
+
+      oldRest = rest
+
     }
 
     this.tokensPerLine[line] = tokens
