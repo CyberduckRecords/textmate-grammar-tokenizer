@@ -24,14 +24,16 @@ let code = `<template lang="html">
   <div id="app" class="test">App</div>
 </template>`
 
-let highlighted = highlighter.Highlight(code)
+let highlightedLines = highlighter.Highlight(code)
 ```
 
-'highlighted' returns:
+'highlightedLines' returns an array with these content:
 ```html
-<div class="line" id="NUM">                      for all lines
-  <span class="TOKEN CLASSES">TOKEN VALUE</span> for all tokens in line
-</div>
+[
+  <div class="line LINENUM">                       // for all lines
+    <span class="TOKEN CLASSES">TOKEN MATCH</span> // for all tokens in line
+  </div>
+]
 ```
 
 ### Tokenizer Usage
@@ -94,5 +96,5 @@ Currently the grammars are in the format of:
 ```
 
 ### Todo List:
-* `Add Nested Subpatterns`
+* `Add More Grammars`
 * `Turn into fully working editor`
