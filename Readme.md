@@ -40,7 +40,11 @@ const Grammar = require('./tokenizer/Grammar')
 const Tokenizer = require('./tokenizer/Tokenizer')
 let grammar = new Grammar('html')
 let tokenizer = new Tokenizer(grammar)
-let tokens = tokenizer.TokenizeLines(input)
+let code = `<template lang="html">
+  <div id="app" class="test">App</div>
+</template>`
+
+let tokens = tokenizer.TokenizeLines(code)
 ```
 
 'tokens' returns:
