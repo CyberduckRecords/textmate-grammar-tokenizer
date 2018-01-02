@@ -24,11 +24,7 @@
         "html.punctuation.definition.tag.begin",
         "html.entity.name.tag.block.$2"
       ],
-<<<<<<< HEAD
       "end": "(\\s|\\/?>)",
-=======
-      "end": "(\/?>)",
->>>>>>> origin/master
       "endCaptures": [
         "html.punctuation.definition.tag.end"
       ],
@@ -62,11 +58,7 @@
         "html.punctuation.definition.tag.begin",
         "html.entity.name.tag.other"
       ],
-<<<<<<< HEAD
       "end": "(\\s|\\/?>)",
-=======
-      "end": "(\/?>)",
->>>>>>> origin/master
       "endCaptures": [
         "html.punctuation.definition.tag.end"
       ],

@@ -1,5 +1,5 @@
 # Textmate Grammar Tokenizer
-As the name suggests, this is a tokenizer that makes use of textmate format grammars (written in json) using  javascrit. Which is browser compatible. If you have any suggestions, issues or improvements for this system please post them in the issues section, because this system is far from perfect.
+As the name suggests, this is a tokenizer that makes use of textmate format grammars (in json format) using  javascript. Which is browser compatible. If you have any suggestions, issues or improvements for this system please post them in the issues section, because this system is far from perfect.
 This might also be turned in to an editor in the future.
 
 ###### For any of these scripts to work, make sure the folder structure looks like this, or you can edit the filepaths.
