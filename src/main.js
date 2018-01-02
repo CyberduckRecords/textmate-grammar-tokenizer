@@ -1,31 +1,17 @@
-const fs = require('fs')
+const fs = require('fs'), path = require('path')
 const Highlighter = require( './tokenizer/Highlighter')
 let highlighter = new Highlighter('html')
-let code = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100vw;
-      height: 100vh;
-    }
-  </style>
-</head>
-<body>
-  <div id="highlighted">
-    stuff
-  </div>
-  <script src="main.js" charset="utf-8"></script>
-</body>
-</html>`
+let code = fs.readFileSync(path.resolve(__dirname,'..','..','cd-code','src','program','test.html'),'utf-8')
 
-let highlighted = highlighter.Highlight(code)
+let start = new Date()
+
+let highlightedLines = highlighter.Highlight(code)
+
+let end = new Date()
+
+console.log(end-start)
+
+//for (let l in highlightedLines) document.write(highlightedLines[l])
 
 let stylesheet = `
 @font-face {
@@ -56,6 +42,9 @@ let stylesheet = `
   color: var(--very-light-grey);
   white-space: pre;
 }
+.line {
+  height: 30px;
+}
 .html.tag {
   color: var(--blue);
 }
@@ -81,6 +70,8 @@ let stylesheet = `
 }
 `
 
+let highlighted = ''
+for (let l in highlightedLines) highlighted += highlightedLines[l]
 document.querySelector('div#highlighted').innerHTML = highlighted
 
 fs.writeFileSync('./src/stylesheet.css', stylesheet)

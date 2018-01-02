@@ -1,0 +1,19 @@
+{
+  "name": "text",
+  "patterns": [
+    {
+      "name": "whitespace",
+      "match": "([\\s]+)",
+      "captures": [
+        "whitespace"
+      ]
+    },
+    {
+      "name": "text",
+      "match": "([^\\s]+)",
+      "captures": [
+        "text"
+      ]
+    }
+  ]
+}

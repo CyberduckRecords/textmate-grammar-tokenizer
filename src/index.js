@@ -18,7 +18,7 @@ function createWindow () {
   }))
 
   // Open the DevTools.
-  win.webContents.openDevTools()
+  setTimeout(() => { win.webContents.openDevTools() },3000)
 
   // Emitted when the window is closed.
   win.on('closed', () => {

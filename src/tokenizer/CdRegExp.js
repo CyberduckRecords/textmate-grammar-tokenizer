@@ -1,6 +1,6 @@
-class CDRegExp {
+class CdRegExp {
   constructor (regex) {
-    let flagRegex = /([(][?][igmyu]+[)])(.+)/
+    let flagRegex = /[(][?]([igmyu]+)[)](.+)/
     let flag = '', regexp = regex
     if (flagRegex.test(regex)) flag = regex.replace(flagRegex, '$1'); regexp = regex.replace(flagRegex, '$2')
     this.regex = new RegExp('^' + regexp, flag)
@@ -9,4 +9,4 @@ class CDRegExp {
   }
 }
 
-module.exports = CDRegExp
+module.exports = CdRegExp

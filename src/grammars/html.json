@@ -12,21 +12,38 @@
       "name": "html.doctype",
       "match": "(<)(!DOCTYPE html)(>)",
       "captures": [
-        "html.punctuation.start",
-        "html.tag.doctype",
-        "html.punctuation.end"
+        "html.punctuation.definition.tag.begin",
+        "html.entity.name.tag.structure.doctype",
+        "html.punctuation.definition.tag.end"
       ]
     },
     {
       "name": "html.tag.block",
-      "start": "(<\\/?)(div)",
+      "start": "(?i)(<\\/?)(address|blockquote|dd|div|section|article|aside|header|footer|nav|menu|dl|dt|fieldset|form|frame|frameset|h1|h2|h3|h4|h5|h6|iframe|noframes|object|ol|p|ul|applet|center|dir|hr|pre)(?=\\s|\\/?>)",
       "startCaptures": [
-        "html.punctuation.start",
-        "html.tag.block"
+        "html.punctuation.definition.tag.begin",
+        "html.entity.name.tag.block.$2"
       ],
-      "end": "(>)",
+      "end": "(\\s|\\/?>)",
       "endCaptures": [
-        "html.punctuation.end"
+        "html.punctuation.definition.tag.end"
+      ],
+      "patterns": [
+        {
+          "include": "#tag-stuff"
+        }
+      ]
+    },
+    {
+      "name": "html.tag.block",
+      "start": "(?i)(<\\/?)(a|abbr|acronym|area|b|base|basefont|bdo|big|br|button|caption|cite|code|col|colgroup|del|dfn|em|font|head|html|i|img|input|ins|isindex|kbd|label|legend|li|link|map|meta|noscript|optgroup|option|param|q|s|samp|script|select|small|span|strike|strong|style|sub|sup|table|tbody|td|textarea|tfoot|th|thead|title|tr|tt|u|var)(?=\\s|\\/?>)",
+      "startCaptures": [
+        "html.punctuation.definition.tag.begin",
+        "html.entity.name.tag.inline.$2"
+      ],
+      "end": "(\\s|\\/?>)",
+      "endCaptures": [
+        "html.punctuation.definition.tag.end"
       ],
       "patterns": [
         {
@@ -38,12 +55,12 @@
       "name": "html.tag.other",
       "start": "(<\\/?)([a-zA-Z0-9:-]+)",
       "startCaptures": [
-        "html.punctuation.start",
-        "html.tag.other"
+        "html.punctuation.definition.tag.begin",
+        "html.entity.name.tag.other"
       ],
-      "end": "(>)",
+      "end": "(\\s|\\/?>)",
       "endCaptures": [
-        "html.punctuation.end"
+        "html.punctuation.definition.tag.end"
       ],
       "patterns": [
         {
@@ -85,7 +102,10 @@
             "entity.other.attribute-name.html",
             "punctuation.separator.key-value.html"
           ],
-          "end": "(?!\\G)|(?=\\s|/?>)",
+          "end": "(?!\\B)|(?=\\s|\/?>)",
+          "endCaptures" : [
+            "html.attribute.end"
+          ],
           "name": "meta.attribute-with-value.html",
           "patterns": [
             {
@@ -111,18 +131,18 @@
     "unquoted-attribute": {
       "patterns": [
         {
-          "match": "([^\\s&>\"'<=`]|&(?=>))+",
+          "match": "((?:[^\\s&>\"'<=`]|&(?=>))+)",
           "captures": [
-            "html.string.unquoted"
+            "html.attribute.unquoted"
           ],
-          "name": "html.string.unquoted"
+          "name": "html.attribute.unquoted"
         }
       ]
     },
     "string-double-quoted": {
       "patterns": [
         {
-          "match": "(\")([^\"]+)(\")",
+          "match": "(\")([^\"]*)(\")",
           "captures": [
             "html.punctuation.definition.string.begin",
             "html.string.double",
@@ -134,7 +154,7 @@
     "string-single-quoted": {
       "patterns": [
         {
-          "match": "(')([^']+)(')",
+          "match": "(')([^']*)(')",
           "captures": [
             "html.punctuation.definition.string.begin",
             "html.string.double",

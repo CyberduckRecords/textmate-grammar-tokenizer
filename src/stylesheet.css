@@ -27,6 +27,9 @@
   color: var(--very-light-grey);
   white-space: pre;
 }
+.line {
+  height: 30px;
+}
 .html.tag {
   color: var(--blue);
 }

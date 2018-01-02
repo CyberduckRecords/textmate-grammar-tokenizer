@@ -1,0 +1,119 @@
+{
+  "name": "javascript",
+  "patterns": [
+    {
+      "name": "whitespace",
+      "match": "([\\s]+)",
+      "captures": [
+        "whitespace"
+      ]
+    },
+    {
+      "name": "comment-single",
+      "match": "(\\/\\/.+)(?=\n|\r\n)",
+      "captures": [
+        "js.comment"
+      ]
+    },
+    {
+      "name": "function.support",
+      "start": "(require|createElement|createAttribute|append|prepend|setAttribute|setAttributeNode)(\\s*)(\\((?=.*))",
+      "startCaptures": [
+        "js.support.function",
+        "whitespace",
+        "js.punctuation"
+      ],
+      "end": "(\\))",
+      "endCaptures": [
+        "js.punctuation"
+      ],
+      "patterns": [
+        {
+          "include": "#function-insert"
+        }
+      ]
+    },
+    {
+      "name": "function.entity",
+      "start": "(?:\\s*|.)([^\\s.]+)([\\s]*)(\\((?=.*))",
+      "startCaptures": [
+        "js.entity.function",
+        "whitespace",
+        "js.punctuation"
+      ],
+      "end": "(\\))",
+      "endCaptures": [
+        "js.punctuation"
+      ],
+      "patterns": [
+        {
+          "include": "#function-insert"
+        }
+      ]
+    },
+    {
+      "name": "keywords",
+      "match": "(for|let|var|const|if|else|function|class|while|do|return|import|export|from|in|require|default)",
+      "captures": [
+        "js.keyword"
+      ]
+    },
+    {
+      "name": "constructor",
+      "match": "(Array|ArrayBuffer|Atomics|Boolean|DataView|Date|Error|EvalError|Float32Array|Float64Array|Function|Generator|GeneratorFunction|Int16Array|Int32Array|Int8Array|InternalError|Intl|JSON|Map|Number|Object|Promise|Proxy|RangeError|ReferenceError|Reflect|RegExp|Set|SharedArrayBuffer|SIMD|String|Symbol|SyntaxError|TypeError|Uint16Array|Uint32Array|Uint8Array|Uint8ClampedArray|URIError|WeakMap|WeakSet)",
+      "captures": [
+        "js.constructor"
+      ]
+    }
+  ],
+  "repository": {
+    "function-insert": {
+      "patterns": [
+        {
+          "name": "whitespace",
+          "match": "([\\s]+)",
+          "captures": [
+            "whitespace"
+          ]
+        },
+        {
+          "include": "#string-single"
+        },
+        {
+          "include": "#string-double"
+        },
+        {
+          "name": "variable",
+          "match": "([^\\s)]+)(?=,|\\s*|\\))",
+          "captures": [
+            "js.variable"
+          ]
+        }
+      ]
+    },
+    "string-single": {
+      "patterns": [
+        {
+          "match": "(')([^']*)(')",
+          "captures": [
+            "js.punctuation",
+            "js.string",
+            "js.punctuation"
+          ]
+        }
+      ]
+    },
+    "string-double": {
+      "patterns": [
+        {
+          "match": "(\")([^\"]*)(\")",
+          "captures": [
+            "js.punctuation",
+            "js.string",
+            "js.punctuation"
+          ]
+        }
+      ]
+    }
+  }
+}

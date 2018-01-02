@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "test": "node test.js"
   },
   "author": "Cyberduck",
   "license": "ISC",

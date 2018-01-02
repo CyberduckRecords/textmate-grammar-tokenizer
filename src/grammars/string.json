@@ -1,0 +1,25 @@
+{
+  "name": "string",
+  "patterns": [
+    {
+      "name": "string",
+      "start": "(<)",
+      "startCaptures": [
+        "punctuation.start"
+      ],
+      "end": "(>)",
+      "endCaptures": [
+        "punctuation.end"
+      ],
+      "patterns": [
+        {
+          "name": "text",
+          "match": "(\\w+)",
+          "captures": [
+            "tag.name"
+          ]
+        }
+      ]
+    }
+  ]
+}
